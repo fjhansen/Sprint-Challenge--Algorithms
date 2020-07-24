@@ -96,7 +96,7 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
+
         # The idea of this is to use list sorting with a flag(while True)
         # We first create the flag/indefinate loop while True
         # We could have used the on/off button for the flag, but it would make our
