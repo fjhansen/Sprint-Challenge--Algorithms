@@ -97,15 +97,71 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        # The idea of this is to use list sorting with a flag(while True)
+        # We first create the flag/indefinate loop while True
+        # We could have used the on/off button for the flag, but it would make our
+        # algorithm way too long. at least when I tried this at first.
+        # Notice that the very first item the robot holds is a None object
+        # We must swap the None object before we start the loop
+        # We then move right swapping while possible. our goals are:
+        # Goals:
+        # 1. Sort all items
+        # 2. Push None object at the very right-most end of the list
+        # 3. Hold the greatest item to be swaped with None object on #2
+        # 4. break the indefinent loop when all is sorted
+
+        # Tip: the best way to visualize this is to make physical cards to sort
+        #       it was the only way I could figure all of this out!
+
+        # you start off with None object so you must swap to proceed with sorting
+        self.swap_item()
+
+        while True:
+            #while moving right is valid...
+            while self.move_right():
+                #print(self._list)
+                # swap items if condition is met
+                if self.compare_item() >=1:
+                    self.swap_item()
+                    #print(f'Swap: {self._item}')
+                    #print(self._list)
+
+                    #if you are at the end of the list AND the item to be compared is none
+                    # swap the items and break the loop
+            if self.can_move_right() == False and self.compare_item() == None:
+                self.swap_item()
+                #print(f'Swap none: {self._item}')
+                #print(self._list)
+                break
+            while self.move_left():
+                if self.compare_item() == None:
+                    self.swap_item()
+                    self.move_right()
+                    self.swap_item()
+                    break # to avoid infinite loop
+                    
+##  some sorta pseudo code from the start               
+##        swap_happened = True
+##        while swap_happened:
+##            swap_happened = False
+##            for num in range(len(self._list)-1):
+##                if self.compare_item() == 1:
+##                    swap_happened = True
+##                    self.swap_item()
+##                    return self._list
+                    
+                    
+                    
+        
+
 
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
-
+    #l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [12,5,1]
     robot = SortingRobot(l)
 
     robot.sort()
